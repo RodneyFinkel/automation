@@ -48,6 +48,12 @@ def send_email(to_email: str, subject: str, attachment_name: str):
     text = message.as_string() # as_string() method also belongs to MIMEMultipart class that can operate on the MIMEMultipart object, message
     
     context = ssl.create_default_context()
+    # with smtplib.SMTP_SSL(SMTP_SERVER, PORT, context=context) as server:
+    #     logging.info(f"Sending email to {to_email}")
+    #     server.login(EMAIL, PASSWORD)
+    #     server.sendmail(EMAIL, receiver_email, text)
+    
+    
     with smtplib.SMTP(SMTP_SERVER, PORT) as server:
         logging.info(f"Sending email to {to_email}")
         server.starttls(context=context)
